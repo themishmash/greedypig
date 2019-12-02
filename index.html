@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+  <div class="h1header">
+  <h1>Greedy Pig</h1>
+  </div>
+  <h2>The game of chance</h2>
+  <!-- divs represent the dice. Css will float them. -->
+  <div id="die1" class="dice">0</div>
+ 
+  <!-- button gives you something to click -->
+
+  <button id="myButton" >Roll dice</button>
+  <button id="reset">Reset</button>
+  <!-- clear left to make sure not in the way -->
+  <h2 id="status" style="clear:left;"></h2>
+  <h2 id="tally"></h2>
+  <h2 id="six">A six was rolled. You greedy, greedy PIG!</h2>
+  <h2 id="chances">Five dice rolls have been made. A poison six may appear soon. Sure you don't want to bank it?</h2>
+  <div class="dicetally">
+  <h2 id="allrollHead">Current die throws</h2>
+ 
+  <h3 id="allrolls"></h3>
+  </div>
+  </div>
+ 
+
+
+
+  <script>
+    let die1 = document.getElementById("die1");
+    let button = document.querySelector("#myButton");
+    let diceTally = document.getElementById("tally");
+    let myTotal = document.querySelector("#total");
+    let allDiceRolls = [];
+    let total = 0; //need to declare globally
+    let myReset = document.getElementById("reset");
+    let status = document.getElementById("status");
+    let mySix = document.getElementById("six");
+    let myAllRollHead = document.getElementById("allrollHead");
+    let myChances = document.getElementById("chances");
+    // let myAllrolls = document.getElementById("allrolls");
+   
+
+
+  //start rolling dice on click
+    button.addEventListener("click", rollDice);
+
+  //reset when press reset  
+    myReset.addEventListener("click", function() {
+      total = 0;
+      allDiceRolls = [];
+      die1.innerHTML = " ";
+      status.innerHTML = " ";
+      tally.innerHTML = " ";
+      mySix.style.display = "none";
+      myAllRollHead.style.display = "none";
+      myChances.style.display = "none";
+      // myAllrolls.innerHTML = " ";
+      
+    });
+    //What happens when the die is rolled and what is displayed
+    function rollDice() {
+      //putting the Ids as variables
+      
+      //run maths on the dice now to get random numbers. Math.random gets decimal so use math.floor on math.random to make sure not have decimal number. rounding down so that's why get plus 1. so the code will give you random number from 1-6
+      var tally = document.getElementById("tally");
+      
+      var d1 = Math.floor(Math.random() * 6) + 1;
+      total += d1;
+     
+      die1.innerHTML = d1;
+      status.innerHTML = `You rolled ${d1}`;
+      tally.innerHTML = `Your total is ${total}`;
+
+      allDiceRolls.push(d1);
+      console.log(allDiceRolls);
+     
+      // prints out all dice rolls
+      let p = document.createElement('p'); //creating a node. needs to be outside
+      
+      for (var i =0; i < allDiceRolls.length; i++) {
+        p.innerHTML = `Dice roll number ${i+1}: ${allDiceRolls[i]}`
+        // document.getElementById("allrolls").innerHTML += ((i+1) + " :  " + allDiceRolls[i]+)
+        if ((i+1)===5)
+        document.getElementById("chances").style.display = "block";
+      };
+      document.getElementById("allrolls").appendChild(p) //needs to be outside otherwise keeps looping and printing out again and again
+    
+      document.getElementById("allrollHead").style.display = "block";
+
+      if (d1===6)
+      document.getElementById("six").style.display = "block";
+  
+      console.log(allDiceRolls);
+
+    }
+
+  
+  
+ //dice total function with Roddy help - accumulator and value
+
+//  function getTotal() {
+//    let total = allDiceRolls.reduce( function(accum, value) {
+//     return accum + value; 
+//     console.log(accum, value);
+//    }, 0);
+//   //  console.log(total);
+//    return total;
+//  }
+
+   
+  </script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,46 @@
+
+  .dice {
+    float: left;
+    width: 32px;
+    background: #F5F5F5;
+    border: #999 1px solid;
+    padding: 10px;
+    font-size: 24px;
+    text-align: center;
+    margin:5px;
+    color: black;
+  }
+
+  #allrollHead {
+    display: none;
+  }
+
+  #six {
+    display: none;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  body {
+    font-family: monospace;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("pig.jpg");
+    background-position: top;
+    background-size: cover;
+    color: white;
+  }
+
+  h1 {
+    font-size: 50px;
+    color: white;
+  }
+
+  #chances {
+    display: none;
+  }
+
+  
